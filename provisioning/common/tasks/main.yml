@@ -20,3 +20,10 @@
 
 - name: Install git
   apt: name=git state=installed
+
+# security
+- name: Install fail2ban
+  apt: name=fail2ban state=installed
+
+#- name: Configure ufw
+#  ufw:

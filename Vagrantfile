@@ -9,6 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/vivid64"
   config.vm.hostname = "weavedev"
   config.ssh.insert_key = false
+  config.vm.network "private_network", type: "dhcp"
 
   config.vm.provider :virtualbox do |v|
     # Setting VM name and increasing RAM size
