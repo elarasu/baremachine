@@ -17,7 +17,7 @@ On Mac, Vagrant v1.6.3 or above
 First clone this repository to your box and have pre-requsites installed.
 
 ```
-   $ cd vagrant-ubuntu-docker
+   $ cd weave-machine
    $ vagrant up
    $ vagrant ssh
 ```
