@@ -1,0 +1,19 @@
+---
+# Ansible playbook for dev server
+#
+# If this is being used within a Vagrant profile, you can update your server
+# by running `vagrant provision` again.
+#
+- hosts: all
+  gather_facts: yes
+
+  roles:
+  - provisioning/common
+  - provisioning/docker
+
+  tasks:
+  - name: Install sshpass
+    apt: name=sshpass state=installed
+
+  - name: Install passlib
+    pip: name=passlib

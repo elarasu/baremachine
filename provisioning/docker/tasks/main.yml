@@ -1,0 +1,20 @@
+---
+- name: Update dns
+  lineinfile: dest=/etc/resolv.conf regexp='^nameserver 127\.0\.0\.1' line='nameserver 127.0.0.1'
+- lineinfile: dest=/etc/resolv.conf regexp='^nameserver 8\.8\.8\.8' line='nameserver 8.8.8.8'
+- lineinfile: dest=/etc/resolv.conf regexp='^nameserver 8\.8\.4\.4' line='nameserver 8.8.4.4'
+
+- name: Update docker key
+  apt_key: keyserver=hkp://pgp.mit.edu:80 id=58118E89F3A912897C070ADBF76221572C52609D
+
+- name: Update docker apt-repository
+  apt_repository: repo='deb https://apt.dockerproject.org/repo ubuntu-vivid main' state=present
+
+- name: Update packages
+  apt: update_cache=yes
+
+- name: Install docker-machine
+  apt: name=docker-engine state=latest install_recommends=no
+
+- name: Install docker-compose
+  pip: name=docker-compose

@@ -1,0 +1,22 @@
+---
+
+- name: Upgrade apt package cache
+  apt: update_cache=yes
+
+- name: Upgrade apt packages
+  apt: upgrade=safe
+
+- name: Install ntp
+  apt: name=ntp state=installed
+
+- name: Install vim
+  apt: name=vim state=installed
+
+- name: Install python and tools
+  apt: name=python-setuptools state=installed
+
+- name: Install pip
+  easy_install: name=pip
+
+- name: Install git
+  apt: name=git state=installed
