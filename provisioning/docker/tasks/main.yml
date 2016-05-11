@@ -4,6 +4,12 @@
 - lineinfile: dest=/etc/resolv.conf regexp='^nameserver 8\.8\.8\.8' line='nameserver 8.8.8.8'
 - lineinfile: dest=/etc/resolv.conf regexp='^nameserver 8\.8\.4\.4' line='nameserver 8.8.4.4'
 
+- name: setup docker packages
+  apt: name=linux-image-extra-{{ ansible_kernel }} state=latest update_cache=yes cache_valid_time=600
+
+- name: setup aufs driver
+  modprobe: name=aufs state=present
+
 - name: Update docker key
   apt_key: keyserver=hkp://pgp.mit.edu:80 id=58118E89F3A912897C070ADBF76221572C52609D
 
@@ -21,3 +27,13 @@
 
 - name: setup docker aufs
   lineinfile: dest=/etc/default/docker regexp='^DOCKER_OPTS ' line='DOCKER_OPTS="--storage-driver=aufs --dns 8.8.8.8 --dns 8.8.4.4"'
+
+- name: stop docker service
+  service: name=docker state=stopped
+
+- name: remove old docker files
+  file: path=/var/lib/docker state=absent
+
+- name: start docker service
+  service: name=docker state=started
+
