@@ -6,16 +6,24 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.box = "ubuntu/vivid64"
-  config.vm.hostname = "weavedev"
-  config.ssh.insert_key = false
-  config.vm.network "private_network", type: "dhcp"
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.hostname = "elixdev"
+  config.vm.network :forwarded_port, guest: 5080, host: 5080, auto_correct: true
+
+  # change this to your needs
+  config.vm.synced_folder ".", "/home/vagrant/hostbox"
 
   config.vm.provider :virtualbox do |v|
     # Setting VM name and increasing RAM size
     v.customize [
       "modifyvm", :id,
-      "--memory", "2048"
+      "--memory", "4096"
+    ]
+
+    # without this symlinks can't be created on the shared folder
+    v.customize [
+      "setextradata", :id,
+      "VBoxInternal2/SharedFoldersEnableSymlinksCreate/app", "1"
     ]
 
   end
