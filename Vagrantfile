@@ -11,7 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, guest: 5080, host: 5080, auto_correct: true
 
   # change this to your needs
-  config.vm.synced_folder ".", "/home/vagrant/hostbox"
+  config.vm.synced_folder "..", "/home/vagrant/hostbox"
 
   config.vm.provider :virtualbox do |v|
     # Setting VM name and increasing RAM size
@@ -28,7 +28,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   end
 
-  config.vm.provision "ansible" do |a|
+  config.vm.provision "ansible_local" do |a|
     a.playbook = "playbook.yml"
     # Run commands as root.
     a.sudo = true
