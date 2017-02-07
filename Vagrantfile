@@ -11,7 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, guest: 5080, host: 5080, auto_correct: true
 
   # change this to your needs
-  config.vm.synced_folder "..", "/home/vagrant/hostbox"
+  config.vm.synced_folder "..", "/home/ubuntu/work"
 
   config.vm.provider :virtualbox do |v|
     # Setting VM name and increasing RAM size

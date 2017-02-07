@@ -7,11 +7,7 @@ Instructions to seed the docker machine environment (both for dev & production).
    * docker & docker-compose
 
 # Pre-requisite
-On Mac, Vagrant v1.8.6 or above
-
-   * git client
-   * python, easy_install, pip `sudo easy_install pip`
-   * ansible pkgs `sudo pip install paramiko PyYAML jinja2 httplib2 ansible`
+none
 
 # Instructions
 First clone this repository to your box and have pre-requsites installed.
@@ -21,5 +17,11 @@ First clone this repository to your box and have pre-requsites installed.
    $ vagrant up
    $ vagrant ssh
 ```
-
-
+## Update
+On updates to vagrantfile, please run the following instructions
+```
+   $ cd baremachine
+   $ vagrant up
+   $ vagrant provision
+   $ vagrant ssh
+```
