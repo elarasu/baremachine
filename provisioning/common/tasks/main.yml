@@ -21,8 +21,29 @@
 - name: Install python and tools
   apt: name=python-setuptools state=installed
 
+- name: Install python software properties
+  apt: name=python-software-properties state=installed
+
 - name: Install pip
   easy_install: name=pip
+
+- name: Install node.js - setup
+  raw: curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+
+- name: Install node.js 
+  apt: name=nodejs state=installed
+
+- name: Install mongo - setup1
+  raw: sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+
+- name: Install mongo - setup2
+  raw: echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+
+- name: Update packages
+  raw: apt-get update
+
+- name: Install mongodb
+  apt: name=mongodb-org state=installed
 
 - name: Install git
   apt: name=git state=installed

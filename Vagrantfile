@@ -23,7 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # without this symlinks can't be created on the shared folder
     v.customize [
       "setextradata", :id,
-      "VBoxInternal2/SharedFoldersEnableSymlinksCreate/app", "1"
+      "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"
     ]
 
   end
