@@ -21,6 +21,7 @@ First clone this repository to your box and have pre-requsites installed.
 On updates to vagrantfile, please run the following instructions
 ```
    $ cd baremachine
+   $ vagrant halt
    $ vagrant up
    $ vagrant provision
    $ vagrant ssh
